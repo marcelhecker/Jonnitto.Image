@@ -1,0 +1,61 @@
+prototype(Jonnitto.Image:Image) < prototype(Content) {
+	tagName = ${Configuration.setting('Jonnitto.Image.tagName')}
+	image = ${q(node).property('image')}
+	alternativeText = ${q(node).property('alternativeText')}
+	title = ${q(node).property('title')}
+	caption = ${q(node).property('caption')}
+	link = ${q(node).property('link')}
+	hasImage = ${this.image ? true : false}
+
+	maximumWidth = ${Configuration.setting('Jonnitto.Image.maximumWidth')}
+	maximumHeight = ${Configuration.setting('Jonnitto.Image.maximumHeight')}
+	width = ${Configuration.setting('Jonnitto.Image.width')}
+	height = ${Configuration.setting('Jonnitto.Image.height')}
+	allowCropping = ${Configuration.setting('Jonnitto.Image.allowCropping')}
+	allowUpScaling = ${Configuration.setting('Jonnitto.Image.allowUpScaling')}
+
+	@context {
+		hasImage = ${this.hasImage}
+		image = ${this.image}
+		lightbox = ${this.image}
+		alternativeText = ${this.alternativeText}
+		title = ${this.title}
+		caption = ${this.caption}
+		maximumWidth = ${this.maximumWidth}
+		maximumHeight = ${this.maximumHeight}
+		width = ${this.width}
+		height = ${this.height}
+		allowCropping = ${this.allowCropping}
+		allowUpScaling = ${this.allowUpScaling}
+	}
+
+	attributes {
+		class = Fusion:RawArray {
+			@process.nodeType >
+			nodeType = 'jonnitto-image'
+			container = ${Configuration.setting('Jonnitto.Image.container')}
+		}
+		style = Fusion:Value {
+			@if.hasNoImage = ${!hasImage}
+			value = 'display:-webkit-box;display:-ms-flexbox;display:flex;flex-direction:row;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;background:#f0ad4e;padding:0 12px;max-height:200px;color:#fff;box-shadow:0 1px 10px rgba(0,0,0,0.1);text-align:center;text-decoration:none;outline:none;font-size:20px;'
+		}
+	}
+
+	img = Jonnitto.Image:ImageTag {
+		@process {
+			addLightbox = Jonnitto.Image:Lightbox
+			addLink = Jonnitto.Image:Link
+		}
+		asset = ${image}
+		alternativeText = ${alternativeText}
+		title = ${title}
+		maximumWidth = ${maximumWidth}
+		maximumHeight = ${maximumHeight}
+		width = ${width}
+		height = ${height}
+		allowCropping = ${allowCropping}
+		allowUpScaling = ${allowUpScaling}
+	}
+
+	@if.hasImageOrBackend = ${node.context.inBackend || hasImage ? true : false}
+}

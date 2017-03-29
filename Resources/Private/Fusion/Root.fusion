@@ -1,0 +1,6 @@
+namespace: Fusion = Neos.Fusion
+namespace: Helper = Jonnitto.Image
+
+include: LinkHelper/*.fusion
+include: Prototypes/*.fusion
+include: NodeTypes/*.fusion

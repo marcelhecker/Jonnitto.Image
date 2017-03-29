@@ -1,0 +1,103 @@
+'Jonnitto.Image:ImageMeta':
+  abstract: true
+  ui:
+    inspector:
+      groups:
+        imagemeta:
+          label: i18n
+          icon: icon-ticket
+          position: 100
+
+'Jonnitto.Image:Title':
+  abstract: true
+  superTypes:
+    'Jonnitto.Image:ImageMeta': true
+  properties:
+    title:
+      type: string
+      ui:
+        label: i18n
+        reloadIfChanged: false
+        inspector:
+          group: imagemeta
+          position: 100
+      validation:
+        'Neos.Neos/Validation/LabelValidator': true
+
+'Jonnitto.Image:AlternativeText':
+  abstract: true
+  superTypes:
+    'Jonnitto.Image:ImageMeta': true
+  properties:
+    alternativeText:
+      type: string
+      ui:
+        label: i18n
+        reloadIfChanged: false
+        inspector:
+          group: imagemeta
+          position: 200
+      validation:
+        'Neos.Neos/Validation/LabelValidator': true
+
+'Jonnitto.Image:Lightbox':
+  abstract: true
+  superTypes:
+    'Jonnitto.Image:ImageMeta': true
+  properties:
+    lightbox:
+      type: boolean
+      defaultValue: false
+      ui:
+        label: i18n
+        inspector:
+          group: imagemeta
+          position: 300
+
+'Jonnitto.Image:Caption':
+  abstract: true
+  superTypes:
+    'Jonnitto.Image:ImageMeta': true
+  properties:
+    caption:
+      type: string
+      ui:
+        label: i18n
+        reloadIfChanged: false
+        inspector:
+          group: imagemeta
+          position: 400
+
+'Jonnitto.Image:Link':
+  abstract: true
+  superTypes:
+    'Jonnitto.Image:ImageMeta': true
+  properties:
+    link:
+      type: string
+      ui:
+        label: i18n
+        reloadIfChanged: false
+        inspector:
+          position: 500
+          group: imagemeta
+          editor: Neos.Neos/Inspector/Editors/LinkEditor
+
+'Jonnitto.Image:ImageMixin':
+  abstract: true
+  ui:
+    inspector:
+      groups:
+        image:
+          label: i18n
+          icon: icon-picture
+          position: 200
+  properties:
+    image:
+      type: Neos\Media\Domain\Model\ImageInterface
+      ui:
+        label: i18n
+        reloadIfChanged: true
+        inspector:
+          group: image
+          position: 100

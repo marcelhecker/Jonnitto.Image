@@ -1,0 +1,23 @@
+prototype(Jonnitto.Image:Lightbox) < prototype(Fusion:Tag) {
+	prototype(ImageUri) {
+		maximumWidth = ${Configuration.setting('Jonnitto.Image.lightbox.maximumWidth')}
+		maximumHeight = ${Configuration.setting('Jonnitto.Image.lightbox.maximumHeight')}
+		width = ${Configuration.setting('Jonnitto.Image.lightbox.width')}
+		height = ${Configuration.setting('Jonnitto.Image.lightbox.height')}
+		allowCropping = ${Configuration.setting('Jonnitto.Image.lightbox.allowCropping')}
+		allowUpScaling = ${Configuration.setting('Jonnitto.Image.lightbox.allowUpScaling')}
+	}
+
+  @if.isEnabled = ${node.context.live && q(node).property('lightbox') && !q(node).property('link') && lightbox ? true : false}
+  tagName = 'a'
+  content = ${value}
+  attributes {
+    target = ${Configuration.setting('Jonnitto.Image.lightbox.target')}
+    class = ${Configuration.setting('Jonnitto.Image.lightbox.class')}
+    data-size = ${lightbox.width + 'x' + lightbox.height}
+    data-title = ${caption}
+    href = ImageUri {
+      asset = ${lightbox}
+    }
+  }
+}
