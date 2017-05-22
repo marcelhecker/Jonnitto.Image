@@ -1,4 +1,6 @@
 prototype(Jonnitto.Image:Image) < prototype(Content) {
+	templatePath = 'resource://Jonnitto.Image/Private/Fusion/Image/Image.html'
+
 	tagName = ${Configuration.setting('Jonnitto.Image.tagName')}
 	image = ${q(node).property('image')}
 	alternativeText = ${q(node).property('alternativeText')}
