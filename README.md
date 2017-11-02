@@ -9,7 +9,7 @@ With this package you add a image NodeType into [Neos CMS](https://www.neos.io).
 Contributions are very welcome!
 
 
-If you want to get a fast overview, take a look at [Settings.yaml](Configuration/Settings.yaml) and [NodeTypes.Content.yaml](Configuration/NodeTypes.Content.yaml) in the [Configuration](Configuration) folder.
+If you want to get a fast overview, take a look at [Settings.yaml](Configuration/Settings.yaml) and [NodeTypes.yaml](Configuration/NodeTypes.yaml) in the [Configuration](Configuration) folder.
 
 
 License

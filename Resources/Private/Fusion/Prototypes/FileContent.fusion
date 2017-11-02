@@ -1,5 +1,0 @@
-prototype(Jonnitto.Image:FileContent) < prototype(Fusion:Value) {
-	@class = 'Jonnitto\\Image\\Fusion\\FileContentImplementation'
-	path = null
-	resource = null
-}

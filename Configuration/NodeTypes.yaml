@@ -1,0 +1,28 @@
+'Jonnitto.Image:Image':
+  superTypes:
+    'Neos.Neos:Content': true
+    'Jonnitto.Image:Bleed': true
+    'Carbon.Image:Image': true
+    'Carbon.Image:Title': true
+    'Carbon.Image:AlternativeText': true
+    'Carbon.Image:Lightbox': true
+    'Carbon.Image:Caption': true
+    'Carbon.Image:Link': true
+    'Carbon.Image:BackendLabel': true
+  ui:
+    label: i18n
+    icon: icon-picture
+    inlineEditable: true
+    position: 300
+
+'Jonnitto.Image:Bleed':
+  abstract: true
+  properties:
+    bleed:
+      type: boolean
+      defaultValue: false
+      ui:
+        label: i18n
+        inspector:
+          group: imagemeta
+          position: 800

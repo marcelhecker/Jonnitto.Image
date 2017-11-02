@@ -1,0 +1,104 @@
+prototype(Jonnitto.Image:Image) < prototype(Neos.Fusion:Tag) {
+    asset = ${q(node).property('image')}
+    lightboxAsset = ${this.asset}
+    alternativeText = ${q(node).property('alternativeText')}
+    caption = ${q(node).property('caption')}
+    lightbox = ${q(node).property('lightbox')}
+    link = ${q(node).property('link')}
+    title = ${q(node).property('title')}
+
+    preset = false
+    maximumWidth = ${Configuration.setting('Carbon.Image.maximumWidth')}
+    maximumHeight = ${Configuration.setting('Carbon.Image.maximumHeight')}
+    width = ${Configuration.setting('Carbon.Image.width')}
+    height = ${Configuration.setting('Carbon.Image.height')}
+    fixedSize = false
+    allowCropping = ${this.fixedSize ? true : Configuration.setting('Carbon.Image.allowCropping')}
+    allowUpScaling = ${this.fixedSize ? true : Configuration.setting('Carbon.Image.allowUpScaling')}
+    srcset = ${Configuration.setting('Carbon.Image.srcset')}
+    inlineSVG = ${Configuration.setting('Jonnitto.Image.inlineSVG')}
+
+    @if.hasImageOrBackend = ${node.context.inBackend || this.asset ? true : false}
+
+    @context {
+        asset = ${this.asset}
+        lightboxAsset = ${this.lightboxAsset}
+        alternativeText = ${this.alternativeText}
+        caption = ${this.caption}
+        lightbox = ${this.lightbox}
+        link = ${this.link}
+        title = ${this.title}
+        maximumWidth = ${this.maximumWidth}
+        maximumHeight = ${this.maximumHeight}
+        width = ${this.width}
+        height = ${this.height}
+        allowCropping = ${this.allowCropping}
+        allowUpScaling = ${this.allowUpScaling}
+
+        preset = ${this.preset}
+        maximumWidth = ${this.maximumWidth}
+        maximumHeight = ${this.maximumHeight}
+        width = ${this.width}
+        height = ${this.height}
+        allowCropping = ${this.allowCropping}
+        allowUpScaling = ${this.allowUpScaling}
+        srcset = ${this.srcset}
+        inlineSVG = ${this.inlineSVG}
+    }
+
+
+    tagName = ${Configuration.setting('Jonnitto.Image.tagName')}
+    attributes {
+        class = Neos.Fusion:RawArray {
+            type = 'jonnitto-image'
+            bleed = ${q(node).property('bleed') ? 'jonnitto-image--bleed' : false}
+        }
+    }
+
+    content = Neos.Fusion:Case {
+        inlineSVG {
+            condition = ${inlineSVG && asset.resource.fileextension == 'svg' ? true : false}
+            renderer = Carbon.FileContent:FileContent {
+                resource = ${asset.resource}
+
+                @process {
+                  addLink = Carbon.Image:Link
+                  addLightbox = Carbon.Image:Lightbox {
+                    asset = ${lightboxAsset}
+                    @if {
+                      hasNoLink = ${link ? false : true}
+                      hasLightbox = ${lightbox ? true : false}
+                    }
+                  }
+                }
+            }
+        }
+        default {
+            condition = true
+            renderer = Carbon.Image:Tag {
+                asset = ${asset}
+                lightboxAsset = ${lightboxAsset}
+                alternativeText = ${alternativeText}
+                caption = ${caption}
+                title = ${title}
+                link = ${link}
+                lightbox = ${lightbox}
+
+                preset = ${preset}
+                maximumWidth = ${maximumWidth}
+                maximumHeight = ${maximumHeight}
+                width = ${width}
+                height = ${height}
+                allowCropping = ${allowCropping}
+                allowUpScaling = ${allowUpScaling}
+                srcset = ${srcset}
+            }
+        }
+    }
+
+    @process.contentElementWrapping {
+        expression = ContentElementWrapping
+        @position = 'end 999999999'
+    }
+    @exceptionHandler = 'Neos\\Neos\\Fusion\\ExceptionHandlers\\NodeWrappingHandler'
+}

@@ -1,28 +1,7 @@
 Jonnitto:
   Image:
     tagName: figure
-    container: false
-    externalTarget: _blank
     inlineSVG: false
-    allowCropping: false
-    allowUpScaling: false
-    width: false
-    height: false
-    maximumWidth: 2550
-    maximumHeight: 2560
-    assetExternal: 'image,video,pdf'
-    instanceOfDocument: '[instanceof Neos.Neos:Document]'
-    prependIdentifier: id-
-    lightbox:
-      class: 'image-lightbox lightbox'
-      target: _blank
-      allowCropping: false
-      allowUpScaling: false
-      width: false
-      height: false
-      maximumWidth: 2560
-      maximumHeight: 2560
-
 
 Neos:
   Neos:
