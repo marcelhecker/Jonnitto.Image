@@ -58,8 +58,8 @@ prototype(Jonnitto.Image:Image) < prototype(Neos.Fusion:Tag) {
     content = Neos.Fusion:Case {
         inlineSVG {
             condition = ${inlineSVG && asset.resource.fileextension == 'svg' ? true : false}
-            renderer = Carbon.FileContent:FileContent {
-                resource = ${asset.resource}
+            renderer = Neos.Fusion:Value {
+                value = ${Carbon.FileContent.resource(asset.resource)}
 
                 @process {
                   addLink = Carbon.Image:Link
