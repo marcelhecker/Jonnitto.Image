@@ -10,8 +10,8 @@ prototype(Jonnitto.Image:Image) < prototype(Neos.Fusion:Tag) {
     preset = false
     maximumWidth = ${Configuration.setting('Carbon.Image.maximumWidth')}
     maximumHeight = ${Configuration.setting('Carbon.Image.maximumHeight')}
-    width = ${Configuration.setting('Carbon.Image.width')}
-    height = ${Configuration.setting('Carbon.Image.height')}
+    width = null
+    height = null
     fixedSize = false
     allowCropping = ${this.fixedSize ? true : Configuration.setting('Carbon.Image.allowCropping')}
     allowUpScaling = ${this.fixedSize ? true : Configuration.setting('Carbon.Image.allowUpScaling')}
