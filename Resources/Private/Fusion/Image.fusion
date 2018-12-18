@@ -63,6 +63,7 @@ prototype(Jonnitto.Image:Image) < prototype(Neos.Fusion:Tag) {
 
                 @process {
                   addLink = Carbon.Image:Link {
+                      @if.render = ${link}
                       link = ${link}
                   }
                   addLightbox = Carbon.Image:Lightbox {
